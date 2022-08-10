@@ -3,6 +3,7 @@
 enum layer {
     LAYER_FIRST,
     LAYER_SECOND,
+    LAYER_THIRD
 };
 
 /* Switch to second layer when held. */
@@ -22,22 +23,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F10,   KC_F11,   KC_F12,
         KC_F7,    KC_F8,    KC_F9
     ),
+
+        /* Second layer (F7-F12) */
+    [LAYER_THIRD] = LAYOUT(
+        _______,   KC_U,     _______,
+        KC_J,      KC_UP,    KC_L,
+        KC_LEFT,   KC_DOWN,   KC_RIGHT
+    ),
 };
 
+// clockwise is backwords...
+// void encoder_update_user(uint8_t index, bool clockwise) {
+//     switch (index) {
+//         /* Top-left encoder (volume): */
+//         case 0:
+//             tap_code(clockwise ? KC_VOLD : KC_VOLU);
+//     }
+// }
+
+uint8_t selected_layer = 0;
 void encoder_update_user(uint8_t index, bool clockwise) {
-    switch (index) {
-        /* Top-left encoder (volume): */
-        case 0:
-            tap_code(clockwise ? KC_VOLU : KC_VOLD);
-            break;
-    
-        /* Top-right encoder (backlight brightness): */
-        case 1:
-            if (clockwise) {
-                backlight_increase();
-            } else {
-                backlight_decrease();
-            }
-            break;
-    }
+  switch (index) {
+    case 0:
+      if (!clockwise && selected_layer  < 10) {
+        selected_layer ++;
+      } else if (clockwise && selected_layer  > 0){
+        selected_layer --;
+      }
+      layer_clear();
+      layer_on(selected_layer);
+    case 1:
+      tap_code(clockwise ? KC_VOLD : KC_VOLU);
+  }
 }
