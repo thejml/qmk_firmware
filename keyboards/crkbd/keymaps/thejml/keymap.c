@@ -58,7 +58,7 @@ enum macro_keycodes {
 #define KC_AMINS  MT(MOD_RALT,KC_MINS)
 #define KC_SLEFT  SCMD(KC_LEFT)
 #define KC_SRIGHT SCMD(KC_RIGHT)
-#define KC_RLEFT  RCTL(KC_LEFT)  
+#define KC_RLEFT  RCTL(KC_LEFT)
 #define KC_RRIGHT RCTL(KC_RIGHT)
 #define KC_SCR1 LALT(KC_1)
 #define KC_SCR2 LALT(KC_2)
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RCTL,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  GUIEI, LOWER,   ENT,      SPC, RAISE, AMINS 
+                                  GUIEI, LOWER,   ENT,      SPC, RAISE, AMINS
                               //`--------------------'  `--------------------'
   ),
 
@@ -87,30 +87,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+--------+------+------+-------+--------|                |------+------+------+------+------+------|
        LSFT,    MSTP,  LTOG,    F8,   MNXT,    MUTE,                    DOT,     1,     2,     3,  LPRN,  RPRN,
   //|------+--------+------+------+-------+--------+-------|  |------+------+------+------+------+------+------|
-                                     GUIEI,   LOWER,   ENT,      SPC, RAISE, AZERO 
+                                     GUIEI,   LOWER,   ENT,      SPC, RAISE, AZERO
                                //`-------------------------'  `--------------------'
   ),
-  
+
   [_RAISE] = LAYOUT_kc( \
   //,-----------------------------------------.                ,---------------------------------------------.
         GRV,  SCR1,  SCR2,  SCR3,  SCR4,  SCR5,                   CIRC,  AMPR,    ASTR,   LPRN,  RPRN,  BSPC,\
   //|------+------+------+------+------+------|                |------+---------+-------+------+------+------|
         ESC,    F1,    F2,    F3,    F4,    F5,                   MINS,  SLEFT,  SRIGHT,  RCBR,  PIPE,   GRV,\
   //|------+------+------+------+------+------|                |------+---------+-------+------+------+------|
-       LSFT,    F6,    F7,    F8,    F9,   F10,                   UNDS,  RLEFT,  RRIGHT,  RBRC,  BSLS,  TILD,\
+       LSFT,    F6,    F7,    F8,    F9,   F10,                   UNDS,  RLEFT,  RRIGHT,  RBRC,  BSLS,  RCTL,\
   //|------+------+------+------+------+------+------|  |------+------+---------+-------+------+------+------|
                                   GUIEI, LOWER,   ENT,      SPC, RAISE, AMINS \
                               //`--------------------'  `--------------------'
-				  
+
   ),
 
   [_ADJUST] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
         RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+       LTOG,  LHUI,  LSAI,  LVAI,    F8,   F12,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+       LMOD,  LHUD,  LSAD,  LVAD,   ESC,   DEL,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, RCTL,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   GUIEI, LOWER,   SPC,      ENT, RAISE, RALT \
                               //`--------------------'  `--------------------'

@@ -35,7 +35,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case UNO:
 			if (record->event.pressed) {
-				SEND_STRING("DrunkGirl15Misato!");
+				SEND_STRING("Asuka15MyCuteWaifu!");
 			}
 			break;
 			return false;
@@ -54,7 +54,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         if (clockwise) {
             tap_code(KC_A);
         } else {
-            tap_code(KC_B);
+            tap_code(KC_DEL);
         }
 		return false;
     }
