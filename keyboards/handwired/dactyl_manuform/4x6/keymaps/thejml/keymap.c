@@ -149,7 +149,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case NOTRUN:
       if (record->event.pressed) {
-        SEND_STRING(" get pods -A|grep -v Running" SS_TAP(X_ENTER));
+        SEND_STRING(" get pods -A|grep -v Running");
       }
       return false;
       break;
@@ -167,7 +167,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case GPUSHO:
       if (record->event.pressed) {
-        SEND_STRING("git push --set-upstream origin" SS_TAP(X_ENTER));
+        SEND_STRING("git push --set-upstream origin ");
       }
       return false;
       break;
