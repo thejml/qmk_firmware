@@ -31,7 +31,19 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   BACKLIT,
-  RGBRST
+  RGBRST,
+  PRIMARY,
+  EH,
+  GC,
+  GP,
+  NOTRUN,
+  WRDL,
+  WRDR,
+  KPSE,
+  KPSW,
+  KPRE,
+  KPRW,
+  PASSRST
 };
 
 enum macro_keycodes {
@@ -44,6 +56,18 @@ enum macro_keycodes {
 #define KC_RAISE  RAISE
 #define KC_RST    RESET
 #define KC_LRST   RGBRST
+#define KC_CPRI   PRIMARY
+#define KC_CGC    GC
+#define KC_CGP    GP
+#define KC_CEH    EH
+#define KC_CNR    NOTRUN
+#define KC_WRDL   WRDL
+#define KC_WRDR   WRDR
+#define KC_KPSE   KPSE
+#define KC_KPSW   KPSW
+#define KC_KPRE   KPRE
+#define KC_KPRW   KPRW
+#define KC_PRST   PASSRST
 #define KC_LTOG   RGB_TOG
 #define KC_LHUI   RGB_HUI
 #define KC_LHUD   RGB_HUD
@@ -106,12 +130,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,  LSAI,  LVAI,    F8,   F12,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD,   ESC,   DEL,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, RCTL,\
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
+        RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX,    XXXXX,  KPRW,  KPRE, XXXXX, XXXXX,\
+  //|------+------+------+------+------+------|                |--------+-------+------+------+------+------|
+       LTOG,  LHUI,  LSAI,  LVAI,    F8,   F12,                     CPRI,    CNR,  KPSW,  KPSE,   CGC, XXXXX,\
+  //|------+------+------+------+------+------|                |--------+-------+------+------+------+------|
+       LMOD,  LHUD,  LSAD,  LVAD,   ESC,   DEL,                      CEH,   WRDL,  WRDR, XXXXX,   CGP, RCTL,\
+  //|------+------+------+------+------+------+------|  |------+--------+-------+------+------+------+------|
                                   GUIEI, LOWER,   SPC,      ENT, RAISE, RALT \
                               //`--------------------'  `--------------------'
   )
@@ -250,7 +274,67 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           RGB_current_mode = rgblight_config.mode;
         }
       #endif
-      break;
+      return false;
+    case PRIMARY:
+      if (record->event.pressed) {
+        SEND_STRING("Asuka1%MyCuteWaifu!");
+      }
+      return false;
+    case EH:
+      if (record->event.pressed) {
+        SEND_STRING("3BzDXpEJjzIJ7pTOF0MX5aRE");
+      }
+      return false;
+    case NOTRUN:
+      if (record->event.pressed) {
+        SEND_STRING(" get pods -A|grep -v Running" SS_TAP(X_ENTER));
+      }
+      return false;
+    case GC:
+      if (record->event.pressed) {
+        SEND_STRING("git commit ");
+      }
+      return false;
+    case GP:
+      if (record->event.pressed) {
+        SEND_STRING("git push" SS_TAP(X_ENTER));
+      }
+      return false;
+    case WRDR:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(ESC) "F");
+      }
+      return false;
+    case WRDL:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(ESC) "B"); //prints KSCB ... 
+      }
+      return false;
+    case KPSE:
+      if (record->event.pressed) {
+        SEND_STRING("k --kubeconfig ~/.kube/shuse1-dmzsql-eds-prd ");
+      }
+      return false;
+    case KPSW:
+      if (record->event.pressed) {
+        SEND_STRING("k --kubeconfig ~/.kube/shusw2-dmzsql-eds-prd ");
+      }
+      return false;
+    case KPRE:
+      if (record->event.pressed) {
+        SEND_STRING("k --kubeconfig ~/.kube/rnuse1-dmz-residential-prd ");
+      }
+      return false;
+    case KPRW:
+      if (record->event.pressed) {
+        SEND_STRING("k --kubeconfig ~/.kube/rnusw2-dmz-residential-prd ");
+      }
+      return false;
+    case PASSRST:
+      if (record->event.pressed) {
+        SEND_STRING(""); // fn + Control + Option + Backspace => Somehow...
+      }     
+      return false;
   }
   return true;
 }
